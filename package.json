@@ -1,0 +1,20 @@
+{
+  "name": "updatemanager",
+  "version": "1.0.0",
+  "description": "Update Manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Update-Manager\"",
+    "package-linux": "electron-packager . --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
+  },
+  "author": "Noel-Kingsly Anupkumar",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.8.2"
+  },
+  "devDependencies": {
+    "electron-packager": "^11.0.1"
+  }
+}
