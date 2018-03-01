@@ -12,7 +12,8 @@
   "author": "Noel-Kingsly Anupkumar",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.8.2"
+    "electron": "^1.8.2",
+    "oracledb": "github:oracle/node-oracledb#v2.1.2"
   },
   "devDependencies": {
     "electron-packager": "^11.0.1"

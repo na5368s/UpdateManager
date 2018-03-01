@@ -10,8 +10,86 @@
             <a class="brand-logo center">Update-Manager</a>
         </div>
     </nav>
-    <ul></ul>
+    <div class="row">
+        <form id="test">
+            <div class="col s6">
+                <label for="item1">Enter User</label>
+                <input type="text" id="item1" required autofocus>
+            </div>
+            <div class="col s6">
+                <label for="item2">Enter Password</label>
+                <input type="password" id="item2" required autofocus>
+            </div>
+            <div class="col s6">
+                <label for="item3">Enter DB-Instance</label>
+                <input type="text" id="item3" required autofocus>
+            </div>
+            <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit">check Updates</button>
+            </div>
+        </form>
+    </div>
 
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(e){
+            e.preventDefault();
+            const item = {
+                username: document.querySelector('#item1').value,
+                password: document.querySelector('#item2').value,
+                db: document.querySelector('#item3').value
+            };
+            ipcRenderer.send('item1:add', item);
+        }
+
+        $("#test").validate({
+            rules: {
+                item1: {
+                    required: true,
+                    minlength: 2
+                },
+                item3: {
+                    required: true,
+                    minlength: 2
+                },
+                item2: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+//For custom messages
+            messages: {
+                item1: {
+                    required: "Please enter your first name.",
+                    minlength: "You sure you're named with one letter?"
+                },
+                item3: {
+                    required: "Please enter your last name.",
+                    minlength: "You sure you're named with one letter?"
+                },
+                item2: {
+                    required: "Please enter a password.",
+                    minlength: "Password must be atleast 5 characters."
+                }
+            },
+            errorElement : 'div',
+            errorPlacement: function(error, element) {
+                var placement = $(element).data('error');
+                if (placement) {
+                    $(placement).append(error)
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+
+    </script>
+<!--
     <script>
         const electron = require('electron');
         const {ipcRenderer} = electron;
@@ -26,5 +104,7 @@
             ul.appendChild(li);
         })
     </script>
+    -->
 </body>
 </html>
+
